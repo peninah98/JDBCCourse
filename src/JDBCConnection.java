@@ -18,7 +18,7 @@ public class JDBCConnection {
     String url="jdbc:postgresql://localhost:5432/Books";
     String username="postgres";
     String password="22222";
-    String query = "select bname from novel where bid = 1";
+    String query = "select * from novel";
 
 
     Class.forName("org.postgresql.Driver");
@@ -28,9 +28,19 @@ public class JDBCConnection {
     statement.execute(query);
     ResultSet resultSet = statement.getResultSet();
 
-    resultSet.next();
-    resultSet.getString("bname");
-    System.out.println("Name of the book is " + resultSet.getString("bname"));
+    // fetching all records
+
+    while  (resultSet.next()) {
+        System.out.print(resultSet.getInt(1) + " _ " );
+        System.out.print(resultSet.getString(2) + " _ " );
+        System.out.print(resultSet.getString(3) + " _ " );
+        System.out.print(resultSet.getInt(4) + " _ " );
+        System.out.println();
+        }
+
+//    resultSet.next();
+//    resultSet.getString("bname");
+//    System.out.println("Name of the book is " + resultSet.getString("bname"));
 
 
     con.close();
