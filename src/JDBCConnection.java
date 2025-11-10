@@ -18,25 +18,33 @@ public class JDBCConnection {
     String url="jdbc:postgresql://localhost:5432/Books";
     String username="postgres";
     String password="22222";
-    String query = "select * from novel";
+//    String query = "select * from novel";
+//    String query = "insert into novel values(5, 'Java', 'Telusko', 2025)";
+//    String query = "update novel set bname = 'JavaScript' where bid = 5";
+    String query = "delete  from novel where bid = 1";
 
 
     Class.forName("org.postgresql.Driver");
     Connection con = DriverManager.getConnection(url, username,password);
     System.out.println("Connected to database successfully");
     Statement statement = con.createStatement();
-    statement.execute(query);
-    ResultSet resultSet = statement.getResultSet();
 
-    // fetching all records
+    boolean querryStatus = statement.execute(query);
+    System.out.println(querryStatus);
 
-    while  (resultSet.next()) {
-        System.out.print(resultSet.getInt(1) + " _ " );
-        System.out.print(resultSet.getString(2) + " _ " );
-        System.out.print(resultSet.getString(3) + " _ " );
-        System.out.print(resultSet.getInt(4) + " _ " );
-        System.out.println();
-        }
+
+
+//    ResultSet resultSet = statement.getResultSet();
+//
+//    // fetching all records
+//
+//    while  (resultSet.next()) {
+//        System.out.print(resultSet.getInt(1) + " _ " );
+//        System.out.print(resultSet.getString(2) + " _ " );
+//        System.out.print(resultSet.getString(3) + " _ " );
+//        System.out.print(resultSet.getInt(4) + " _ " );
+//        System.out.println();
+//        }
 
 //    resultSet.next();
 //    resultSet.getString("bname");
