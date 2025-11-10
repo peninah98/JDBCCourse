@@ -18,19 +18,43 @@ public class JDBCConnection {
     String url="jdbc:postgresql://localhost:5432/Books";
     String username="postgres";
     String password="22222";
+
+
+    // userdata
+        int bid = 11;
+        String bname = "C++" ;
+        String author = "Telesuko";
+        int releasey = 2009;
+
+
+
 //    String query = "select * from novel";
 //    String query = "insert into novel values(5, 'Java', 'Telusko', 2025)";
 //    String query = "update novel set bname = 'JavaScript' where bid = 5";
-    String query = "delete  from novel where bid = 1";
+//    String query = "delete  from novel where bid = 1";
+//        String query = "insert into novel values ("+bid+",'"+bname+"',"+author+")";
 
+        String query = "insert into novel values(?, ?, ?, ?)";
 
     Class.forName("org.postgresql.Driver");
     Connection con = DriverManager.getConnection(url, username,password);
     System.out.println("Connected to database successfully");
-    Statement statement = con.createStatement();
 
-    boolean querryStatus = statement.execute(query);
-    System.out.println(querryStatus);
+//    Statement statement = con.createStatement();
+//    boolean querryStatus = statement.execute(query);
+
+
+
+        PreparedStatement preparedStatement = con.prepareStatement(query );
+        preparedStatement.setInt(1,bid);
+        preparedStatement.setString(2,bname);
+        preparedStatement.setString(3,author);
+        preparedStatement.setInt(4,releasey);
+
+
+
+
+//    System.out.println(querryStatus);
 
 
 
